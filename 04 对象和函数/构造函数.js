@@ -32,3 +32,10 @@ dog2.sayName()
 // 这里留有一个疑问 为什么不用class 非要用构造函数？
 
 console.log(dog1 instanceof Dog)
+
+/**
+this 情况
+当以函数执行的时候，this指向window
+当以方法执行的时候，this指向方法的类
+当以构造函数执行的时候，this指向类实例
+*/
