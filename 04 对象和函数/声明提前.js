@@ -1,4 +1,5 @@
 
+
 console.log(a) // 不会报错 会输出undefined
 var a = 1 ;  
 
