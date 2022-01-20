@@ -20,3 +20,13 @@ console.log("----------")
 // 检查一个字符串中是否含有abc adc 或 aec
 ret = /abc|adc|aec/;
 console.log(ret.test('abcsdwea'))
+
+// [^] 除了 
+reg = /[^ab]/;
+console.log(reg.test("a"))
+
+// {n} 正好出现几次 {m,n} m-n次 {m,} m次以上
+// 只对前一个内容起作用，想要成组 要用（）
+reg = /(ab){3}/;
+reg = /(ab){1,3}/; //1-3 次
+console.log(reg.test("abababb"))
