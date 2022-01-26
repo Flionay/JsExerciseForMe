@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        
+        .inner{
+            border: groove;
+            width: 500px;
+            padding: auto;
+            margin: 50px auto;
+        }
+
+        li {
+            /* color: aqua; */
+            width: 60px;
+            height: 30px;
+            display: block;
+            background-color: darkcyan;
+            margin:5px;
+            text-align: center;
+        }
+
+        #buttonList {
+            width: 400px;
+            height: 500px;
+            display: block;
+            padding: auto;
+            margin: 10px auto;
+            text-align: left;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+            function MyClick(btnId,functions){
+                var btns = document.getElementById(btnId);
+                btns.onclick = functions;
+            }
+            //1. 
+            // var btn01 = document.getElementById("btn01");
+            // btn01.onclick = function(){
+            //     // 生成广州节点
+            //     var gzLi = document.createElement("li");
+            //     var gzText = document.createTextNode("广州");
+            //     gzLi.appendChild(gzText);
+            //     var city = document.getElementById("city");
+            //     city.appendChild(gzLi);
+            // }
+
+            
+            // 1. 将取 btn节点和绑定事件 提取到一个函数中，简化操作
+            MyClick("btn01",function(){
+                 // 生成广州节点
+                var gzLi = document.createElement("li");
+                var gzText = document.createTextNode("广州");
+                gzLi.appendChild(gzText);
+                var city = document.getElementById("city");
+                city.appendChild(gzLi);
+            })
+
+
+        }
+    </script>
+</head>
+<body>
+    <div id="total">
+        <div class="inner">
+            <ul id="city">
+                <li id="bj">北京</li>
+                <li>上海</li>
+                <li>天津</li>
+                <li>深圳</li>
+            </ul>
+        </div>
+    </div>
+    <div id="buttonList">
+        <div><button id="btn01">添加一个广州节点 </button></div>
+        <div><button id="btn02">将广州节点插入北京前面 </button></div>
+        <div><button id="btn03">使用广州节点替换北京 </button></div>
+        <div><button id="btn04">删除北京节点 </button></div>
+        <div><button id="btn05">读取 #city 下的所有HTML代码 </button></div>
+        <div><button id="btn06">设置 #bj 的HTML代码 </button></div>
+
+
+    </div>
+</body>
+</html>

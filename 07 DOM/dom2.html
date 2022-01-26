@@ -8,6 +8,7 @@
     <script>
         window.onload = function(){
             // 1. 全选
+            var topBtn = document.getElementById("checkAllBox");
             var btn = document.getElementById("checkAllBtn");
             btn.onclick = function(){
                 var checkboxall = document.getElementsByName("items");
@@ -15,7 +16,8 @@
                 for (var i =0; i<checkboxall.length; i++){
                     // alert(checkboxall[i])
                     checkboxall[i].checked = true;
-                }
+                };
+                topBtn.checked = true;
             };
 
             //2. 全不选
@@ -26,20 +28,37 @@
                 for (var i =0; i<checkboxall.length; i++){
                     // alert(checkboxall[i])
                     checkboxall[i].checked = false;
-                }
+                };
+                topBtn.checked = false;
             };
 
 
             //3. 反选
             var btn = document.getElementById("checkRevBtn");
             btn.onclick = function(){
-                var checkboxall = document.getElementsByName("items");
+                var items = document.getElementsByName("items");
 
-                for (var i =0; i<checkboxall.length; i++){
+                for (var i =0; i<items.length; i++){
                     // alert(checkboxall[i])
-                    checkboxall[i].checked = !checkboxall[i].checked;
+                    items[i].checked = !items[i].checked;
                 }
+
+                for(var i=0;i<items.length;i++){
+                        var count=0;//定义一个计数变量
+                        for(var j=0;j<items.length;j++){//遍历items
+                            if(items[j].checked==true){//如果状态为选中，count+1
+                                count++;
+                            }
+                            if(count==items.length){//如果被选中的个数等于items的长度
+                                topBtn.checked=true;//全选checkbox选中
+                            }else{
+                                topBtn.checked=false;//全选checkbox不选中
+                            }
+                    }
+                };
             };
+
+
 
 
             // 4. sendbutton 点击之后 显示选中的运动
@@ -54,6 +73,44 @@
                     }
                 }
             }
+
+            // 5.  点击之后 全选或者全不选
+            var btn = document.getElementById("checkAllBox");
+            btn.onclick = function(){
+                var checkboxall = document.getElementsByName("items");
+                for (var i =0; i<checkboxall.length; i++){
+                    // alert(checkboxall[i])
+                    checkboxall[i].checked = btn.checked;
+                }
+                
+            }
+
+            // 有个问题 就是都不选的时候 上面的全不选checkbox也应该是未选中状态
+            // 很明显需要加判断，如果都没有选中，就将上面的check AllBox 置位false
+            var topBtn = document.getElementById("checkAllBox");
+            var items = document.getElementsByName("items");
+
+
+            //遍历所有的items，绑定onchange事件
+            for(var i=0;i<items.length;i++){
+                items[i].onchange=function(){
+                    qxFn();
+                };
+            }
+            
+            var qxFn=function(){
+                var count=0;//定义一个计数变量
+                for(var j=0;j<items.length;j++){//遍历items
+                    if(items[j].checked==true){//如果状态为选中，count+1
+                        count++;
+                    }
+                    if(count==items.length){//如果被选中的个数等于items的长度
+                        topBtn.checked=true;//全选checkbox选中
+                    }else{
+                        topBtn.checked=false;//全选checkbox不选中
+                    }
+                }
+            };
         }
 
 
