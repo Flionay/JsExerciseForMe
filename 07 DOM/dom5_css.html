@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById("btn");
+            var box = document.getElementById("box");
+            btn.onclick = function(){
+                // 通过这种方法修改的都是内联样式，
+                // 但是如果css中有!important 那么这种方法修改也不会生效 
+                box.style.width = "250px";
+                box.style.backgroundColor="yellow";
+                // 通过style 读取的样式都是内联样式 不会读取css样式表中的样式‘
+
+            }
+
+            var btn1 = document.getElementById("btn1");
+            btn1.onclick = function(){
+                var boxStyle = getComputedStyle(box,null);
+                alert(boxStyle.backgroundColor);
+
+            }
+
+        };
+
+
+    </script>
+</head>
+<body>
+    <div><button id="btn">点击修改！</button></div>
+    <div><button id="btn1">点击连续修改！</button></div>
+
+    <br/>
+    <div id="box"></div>
+</body>
+</html>

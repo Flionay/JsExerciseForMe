@@ -52,14 +52,14 @@
                 // 增加一行
                 var table = document.getElementById("table");
                 var tbody = document.getElementsByTagName("tbody")[0];
-                tbody.innerHTML += "<tr><td>"+name+"</td>"+
+                var tr = document.createElement("tr");
+                tr.innerHTML += "<td>"+name+"</td>"+
                                     "<td>"+email+"</td>"+
                                     "<td>"+salary+"</td>"+
-                                    "<td><a href=\"javascript:;\">delete</a></td></tr>";
-
+                                    "<td><a href=\"javascript:;\">delete</a></td>";
+                tbody.appendChild(tr)
                 //重新绑定一下 删除事件
-                var a = table.getElementsByTagName("tr")[0];
-                alert(a)
+                var a = tr.getElementsByTagName("a")[0];
                 a.onclick = delRow;
             }
         };
