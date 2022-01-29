@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,table tr td { 
+            border:1px solid #ccc; 
+            text-align: center;
+            padding: 0 auto;
+        }
+        table tr td{
+            padding: 5px 10px;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+            // 1. 点击delete 删除一行
+            var delbtn = document.getElementsByTagName("a");
+            for (var i=0; i<delbtn.length; i++){
+
+                // 这里有个知识点需要注意 文档加载先运行绑定事件  运行完之后i 变成了3
+                // 等到点击事件运行时，绑定函数才执行，所以函数里面的i是3开始的
+                delbtn[i].onclick = function(){
+                    // 删除一行 得找到这个行节点
+
+                    var tr = this.parentNode.parentNode;
+
+                    var name = tr.children[0].innerHTML;
+                    if (confirm("确认删除 "+name+" 吗？")){
+                        tr.parentNode.removeChild(tr);
+                    }
+                    
+                    return false;
+                }
+            }
+
+            //2. 添加成员
+
+            var sendBtn = document.getElementById("send");
+            sendBtn.onclick = function(){
+                var 
+            }
+        };
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            
+            <td>张三</td>
+            <td>xxxmail</td>
+            <td>30000</td>
+            <td><a href="">delete</a></td>
+        </tr>
+        <tr>
+            <td>里斯</td>
+            <td>xxxmail</td>
+            <td>60000</td>
+            <td><a href="">delete</a></td>
+        </tr>
+        <tr>
+            <td>王武</td>
+            <td>xxxmail</td>
+            <td>50000</td>
+            <td><a href="">delete</a></td>
+        </tr>
+
+    </table>
+
+    <h4>添加新员工</h4>
+
+    <table>
+        <tr>
+            <td>name:</td>
+            <td>
+                <input type="text" name="empName" id="empName">
+            </td>
+            <tr>
+                <td>email:</td>
+                <td>
+                    <input type="text" name="email" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td>salary:</td>
+                <td>
+                    <input type="text" name="salary" id="salary">
+                </td>
+            </tr>
+        </tr>
+    </table>
+    <div><button id="send">提交</button></div>
+</body>
+</html>

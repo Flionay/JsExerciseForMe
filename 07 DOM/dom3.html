@@ -63,8 +63,35 @@
                 city.appendChild(gzLi);
             })
 
+            //1.1 使用innerHtml 添加dom节点
+            MyClick("btn07",function(){
+                 
+                
+                var city = document.getElementById("city");
+                city.innerHTML += "<li>广州</li>";
+            })
+
             //2. 将广州节点插入北京前面
-            
+            MyClick("btn02",function(){
+                 // 生成广州节点
+                var gzLi = document.createElement("li");
+                var gzText = document.createTextNode("广州");
+                gzLi.appendChild(gzText);
+                var bj = document.getElementById("bj");
+                var city = document.getElementById("city");
+                city.insertBefore(gzLi,bj);
+            })
+
+            //3. 将广州替换北京
+            MyClick("btn03",function(){
+                 // 生成广州节点
+                var gzLi = document.createElement("li");
+                var gzText = document.createTextNode("广州");
+                gzLi.appendChild(gzText);
+                var bj = document.getElementById("bj");
+                var city = document.getElementById("city");
+                city.replaceChild(gzLi,bj);
+            })
 
 
         }
@@ -88,6 +115,7 @@
         <div><button id="btn04">删除北京节点 </button></div>
         <div><button id="btn05">读取 #city 下的所有HTML代码 </button></div>
         <div><button id="btn06">设置 #bj 的HTML代码 </button></div>
+        <div><button id="btn07">添加一个广州节点 </button></div>
 
 
     </div>
