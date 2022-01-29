@@ -17,14 +17,7 @@
     </style>
 
     <script>
-        window.onload = function(){
-            // 1. 点击delete 删除一行
-            var delbtn = document.getElementsByTagName("a");
-            for (var i=0; i<delbtn.length; i++){
-
-                // 这里有个知识点需要注意 文档加载先运行绑定事件  运行完之后i 变成了3
-                // 等到点击事件运行时，绑定函数才执行，所以函数里面的i是3开始的
-                delbtn[i].onclick = function(){
+        function delRow (){
                     // 删除一行 得找到这个行节点
 
                     var tr = this.parentNode.parentNode;
@@ -35,20 +28,45 @@
                     }
                     
                     return false;
-                }
+                };
+        window.onload = function(){
+            // 1. 点击delete 删除一行
+            var delbtn = document.getElementsByTagName("a");
+            for (var i=0; i<delbtn.length; i++){
+
+                // 这里有个知识点需要注意 文档加载先运行绑定事件  运行完之后i 变成了3
+                // 等到点击事件运行时，绑定函数才执行，所以函数里面的i是3开始的
+                delbtn[i].onclick = delRow;
             }
 
             //2. 添加成员
 
             var sendBtn = document.getElementById("send");
             sendBtn.onclick = function(){
-                var 
+
+                //获取三个信息
+                var name = document.getElementsByName("empName")[0].value;
+                var email = document.getElementsByName("email")[0].value;
+                var salary = document.getElementsByName("salary")[0].value;
+
+                // 增加一行
+                var table = document.getElementById("table");
+                var tbody = document.getElementsByTagName("tbody")[0];
+                tbody.innerHTML += "<tr><td>"+name+"</td>"+
+                                    "<td>"+email+"</td>"+
+                                    "<td>"+salary+"</td>"+
+                                    "<td><a href=\"javascript:;\">delete</a></td></tr>";
+
+                //重新绑定一下 删除事件
+                var a = table.getElementsByTagName("tr")[0];
+                alert(a)
+                a.onclick = delRow;
             }
         };
     </script>
 </head>
 <body>
-    <table>
+    <table id="table">
         <tr>
             
             <td>张三</td>
